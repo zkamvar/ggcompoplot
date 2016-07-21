@@ -9,8 +9,9 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "README-",
-  fig.width = 7,
-  fig.height = 10
+  fig.width = 9,
+  fig.height = 10,
+  cache = TRUE
 )
 ```
 
@@ -19,6 +20,15 @@ knitr::opts_chunk$set(
 The goal of ggcompoplot is to create compoplots that can be manipulated using
 the grammar of graphics. This code originally appeared in 
 https://zenodo.org/record/13007. 
+
+## Installation
+
+To install, download devtools, and copy and past this into your R console:
+
+```{r, eval = FALSE}
+devtools::install_github("zkamvar/ggcompoplot")
+```
+
 
 ## Example
 

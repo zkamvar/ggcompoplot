@@ -5,6 +5,15 @@ ggcompoplot
 
 The goal of ggcompoplot is to create compoplots that can be manipulated using the grammar of graphics. This code originally appeared in <https://zenodo.org/record/13007>.
 
+Installation
+------------
+
+To install, download devtools, and copy and past this into your R console:
+
+``` r
+devtools::install_github("zkamvar/ggcompoplot")
+```
+
 Example
 -------
 
@@ -27,7 +36,7 @@ dapc1 <- dapc(microbov, n.pca=20, n.da=15)
 compoplot(dapc1, lab="") # Adegenet compoplot
 ```
 
-![](README-unnamed-chunk-2-1.png)
+![](README-unnamed-chunk-3-1.png)
 
 ### Using ggcompoplot
 
@@ -37,7 +46,7 @@ To use ggcompoplot, all you need is the results of your DAPC analysis and your g
 ggcompoplot(dapc1, microbov) + theme(axis.text.x = element_blank())
 ```
 
-![](README-unnamed-chunk-3-1.png)
+![](README-unnamed-chunk-4-1.png)
 
 ``` r
 
@@ -45,7 +54,7 @@ ggcompoplot(dapc1, microbov) + theme(axis.text.x = element_blank())
 ggcompoplot(dapc1, microbov, col = 3) + theme(axis.text.x = element_blank())
 ```
 
-![](README-unnamed-chunk-3-2.png)
+![](README-unnamed-chunk-4-2.png)
 
 ``` r
 
@@ -53,7 +62,7 @@ ggcompoplot(dapc1, microbov, col = 3) + theme(axis.text.x = element_blank())
 ggcompoplot(dapc1, microbov, col = 3, pal = funky) + theme(axis.text.x = element_blank())
 ```
 
-![](README-unnamed-chunk-3-3.png)
+![](README-unnamed-chunk-4-3.png)
 
 ``` r
 
@@ -62,4 +71,4 @@ setPop(microbov) <- ~coun
 ggcompoplot(dapc1, microbov) + theme(axis.text.x = element_blank())
 ```
 
-![](README-unnamed-chunk-3-4.png)
+![](README-unnamed-chunk-4-4.png)
