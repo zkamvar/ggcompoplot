@@ -21,54 +21,61 @@ Example
 
 ``` r
 library('adegenet')
-#> Loading required package: ade4
-#> 
-#>    /// adegenet 2.0.1 is loaded ////////////
-#> 
-#>    > overview: '?adegenet'
-#>    > tutorials/doc/questions: 'adegenetWeb()' 
-#>    > bug reports/feature requests: adegenetIssues()
 library('ggcompoplot')
 library('ggplot2')
+
 data(microbov)
 strata(microbov) <- data.frame(other(microbov))
+
 dapc1 <- dapc(microbov, n.pca=20, n.da=15)
+
 compoplot(dapc1, lab="") # Adegenet compoplot
 ```
 
-![](README-unnamed-chunk-3-1.png)
+![](README-setup_adegenet-1.png)
 
 ### Using ggcompoplot
 
 To use ggcompoplot, all you need is the results of your DAPC analysis and your genind/genlight object:
 
 ``` r
-ggcompoplot(dapc1, microbov) + theme(axis.text.x = element_blank())
+# Setting a named palette of colors
+(rainbov <- setNames(rainbow(nPop(microbov)), popNames(microbov)))
+#>          Borgou            Zebu       Lagunaire           NDama 
+#>     "#FF0000FF"     "#FF6600FF"     "#FFCC00FF"     "#CCFF00FF" 
+#>           Somba          Aubrac        Bazadais BlondeAquitaine 
+#>     "#66FF00FF"     "#00FF00FF"     "#00FF66FF"     "#00FFCCFF" 
+#>    BretPieNoire       Charolais          Gascon        Limousin 
+#>     "#00CCFFFF"     "#0066FFFF"     "#0000FFFF"     "#6600FFFF" 
+#>      MaineAnjou     Montbeliard          Salers 
+#>     "#CC00FFFF"     "#FF00CCFF"     "#FF0066FF"
+
+ggcompoplot(dapc1, microbov, pal = rainbov) + theme(axis.text.x = element_blank())
 ```
 
-![](README-unnamed-chunk-4-1.png)
+![](README-ggcompoplot-1.png)
 
 ``` r
 
 # 3 columns
-ggcompoplot(dapc1, microbov, col = 3) + theme(axis.text.x = element_blank())
+ggcompoplot(dapc1, microbov, cols = 3, pal = rainbov) + theme(axis.text.x = element_blank())
 ```
 
-![](README-unnamed-chunk-4-2.png)
+![](README-ggcompoplot-2.png)
 
 ``` r
 
 # Different color palette
-ggcompoplot(dapc1, microbov, col = 3, pal = funky) + theme(axis.text.x = element_blank())
+ggcompoplot(dapc1, microbov, cols = 3, pal = funky) + theme(axis.text.x = element_blank())
 ```
 
-![](README-unnamed-chunk-4-3.png)
+![](README-ggcompoplot-3.png)
 
 ``` r
 
 # Per Country
 setPop(microbov) <- ~coun
-ggcompoplot(dapc1, microbov) + theme(axis.text.x = element_blank())
+ggcompoplot(dapc1, microbov, pal = rainbov) + theme(axis.text.x = element_blank())
 ```
 
-![](README-unnamed-chunk-4-4.png)
+![](README-ggcompoplot-4.png)

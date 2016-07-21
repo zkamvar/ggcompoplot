@@ -34,13 +34,16 @@ devtools::install_github("zkamvar/ggcompoplot")
 
 ### Compoplot from DAPC Analysis (from adegenet)
 
-```{r, fig.width = 7, fig.height = 5}
+```{r setup_adegenet, fig.width = 7, fig.height = 5}
 library('adegenet')
 library('ggcompoplot')
 library('ggplot2')
+
 data(microbov)
 strata(microbov) <- data.frame(other(microbov))
+
 dapc1 <- dapc(microbov, n.pca=20, n.da=15)
+
 compoplot(dapc1, lab="") # Adegenet compoplot
 ```
 
@@ -50,17 +53,20 @@ compoplot(dapc1, lab="") # Adegenet compoplot
 To use ggcompoplot, all you need is the results of your DAPC analysis and your
 genind/genlight object:
 
-```{r}
-ggcompoplot(dapc1, microbov) + theme(axis.text.x = element_blank())
+```{r, ggcompoplot}
+# Setting a named palette of colors
+(rainbov <- setNames(rainbow(nPop(microbov)), popNames(microbov)))
+
+ggcompoplot(dapc1, microbov, pal = rainbov) + theme(axis.text.x = element_blank())
 
 # 3 columns
-ggcompoplot(dapc1, microbov, col = 3) + theme(axis.text.x = element_blank())
+ggcompoplot(dapc1, microbov, cols = 3, pal = rainbov) + theme(axis.text.x = element_blank())
 
 # Different color palette
-ggcompoplot(dapc1, microbov, col = 3, pal = funky) + theme(axis.text.x = element_blank())
+ggcompoplot(dapc1, microbov, cols = 3, pal = funky) + theme(axis.text.x = element_blank())
 
 # Per Country
 setPop(microbov) <- ~coun
-ggcompoplot(dapc1, microbov) + theme(axis.text.x = element_blank())
+ggcompoplot(dapc1, microbov, pal = rainbov) + theme(axis.text.x = element_blank())
 ```
 
